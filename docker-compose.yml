@@ -1,0 +1,16 @@
+services:
+  void-market:
+    build: .
+    container_name: void-market
+    ports:
+      - "8585:8585"
+    environment:
+      # Defaults; override in .env
+      - VM_HOST=0.0.0.0
+      - VM_PORT=8585
+    env_file:
+      - .env
+    volumes:
+      # Persist databases + SDE uploads
+      - ./data:/app/data
+    restart: unless-stopped
